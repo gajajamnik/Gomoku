@@ -9,4 +9,7 @@ public enum Igralec {
 		}
 
 
+	public Polje getPolje() {
+		return (this == B ? Polje.W : Polje.B);
+	}
 }
