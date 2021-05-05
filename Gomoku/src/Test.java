@@ -7,11 +7,20 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		Igra.plosca[2][3] = Polje.B;
-		Igra.plosca[2][4] = Polje.B;
-		Igra.plosca[2][5] = Polje.B;
-		Igra.plosca[2][6] = Polje.B;
-		Igra.plosca[2][7] = Polje.B;
+		
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				plosca[i][j] = Polje.PRAZNO;
+			}
+		}
+		
+		plosca[2][3] = Polje.B;
+		plosca[2][4] = Polje.B;
+		plosca[2][5] = Polje.B;
+		plosca[2][6] = Polje.B;
+		plosca[2][7] = Polje.B;
+		
+		Igra.plosca = plosca;
 
 		System.out.println("Velikost plosce je " + Igra.plosca.length);
 		System.out.println("Na mestu (0,0) je " + Igra.plosca[0][0]);
@@ -25,11 +34,12 @@ public class Test {
 	
 	public static Igra igra = new Igra();
 	
+	public static Polje[][] plosca = new Polje[15][15];
 	
 	public static Igralec igralec = Igralec.B;
 	
 	public static Koordinati k = new Koordinati(2, 3);
 	
-	public static boolean zmaga = Igra.smoZmagali(k, igralec);
+	public static boolean zmaga = igra.smoZmagali(k, igralec);
 
 }

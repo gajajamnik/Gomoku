@@ -58,40 +58,36 @@ public class Igra {
 	}
 	
 	// preveri ali je bila opravljena zmagovalna poteza
-	// static?
-	public static boolean smoZmagali(Koordinati t, Igralec i) {
+
+	public boolean smoZmagali(Koordinati t, Igralec i) {
 		int x = t.getX();
 		int y = t.getY();
-		
-		
-		int[][] smer = {{1,0}, {0,1}, {-1, 1}, {1,1}};
-		
+		int glavni = 0;
+		int[][] smer = {{1,0}, {1,1}, {0,1}, {-1,1}};
 		for (int[] s : smer) {
 			int dx = s[0];
 			int dy = s[1];
-			
-			int stevec = 0;
-			
+			int stetje = 0;
 			for (int n = 1; n < 5; n++) {
-				if (0 < x + n*dx && x + n*dx < N && 0 < y + n*dy && y + n*dy < N) {
-					if (plosca[x + n*dx][y + n*dy] == i.getPolje()) {
-						stevec++;
-					}
+				if ((0 <= x + n * dx && x + n * dx < plosca.length) && (0 <= y + n*dy && y + n * dy < plosca.length)) {
+					if (plosca[x + n * dx][y + n * dy] == i.getPolje()) stetje++;
 					else break;
 				}
 			}
-			for (int n = -1; n < 5; n++) {
-				if (0 < x + n*dx && x + n*dx < N && 0 < y + n*dy && y + n*dy < N) {
-					if (plosca[x + n*dx][y + n*dy] == i.getPolje()) {
-						stevec++;
-					}
+			for (int m = -1; m > -5; m--) {
+				if ((0 <= x + m * dx && x + m * dx < plosca.length) && (0 <= y + m * dy && y + m * dy < plosca.length)) {
+					if (plosca[x + m * dx][y + m * dy] == i.getPolje()) stetje++;
 					else break;
 				}
 			}
-			if (stevec >= 4) return true;
+			if (stetje > glavni) glavni = stetje;
 		}
-		return false;
+		if (glavni >= 4) return true;
+		else return false;
 	}
+
+	
+	
 	
 	
 	// možne poteze (vsebuje prazna polja)
