@@ -10,48 +10,49 @@ public class Igra {
 	// velikost plošèe
 	public static int N = 15;
 	
-	public static int stevec;
-	
-	//public?
-	public static Polje[][] plosca;
-	
+	Polje[][] plosca;
 	public Igralec naPotezi;
-	
 	public Stanje stanje;
+	public int stevec;
 	
 	public Igra() {
-		plosca = new Polje[N][N];
+		
+		this.plosca = new Polje[N][N];
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				plosca[i][j] = Polje.PRAZNO;
 			}
 		}
-		stevec = N * N;
-		stanje = Stanje.V_TEKU;
-		naPotezi = Igralec.B;
+		
+		this.stevec = N * N;
+		this.stanje = Stanje.V_TEKU;
+		this.naPotezi = Igralec.B;
 	}
 	
+	public Stanje stanje() {
+		return this.stanje;
+	}
 	
+	public Polje[][] getPlosca() {
+		return this.plosca;
+	}
 	
-	public boolean odigraj(Koordinati p) {
+	public boolean odigraj(Koordinati k) {
 		
 		// preveri ali je polje za potezo prazno, potem je poteza veljavna in jo odigra
-		if (plosca[p.getX()][p.getY()] == Polje.PRAZNO) {
-			plosca[p.getX()][p.getY()] = naPotezi.getPolje();
+		if (this.plosca[k.getX()][k.getY()] == Polje.PRAZNO) {
+			this.plosca[k.getX()][k.getY()] = this.naPotezi.getPolje();
 			
 			// preveri ali bo naša poteza zmagovalna
-			if (smoZmagali(p, naPotezi)) {
-				if (naPotezi == Igralec.B) stanje = Stanje.ZMAGA_B;
-				else stanje = Stanje.ZMAGA_W;
+			if (this.smoZmagali(k)) {
+				stanje = this.naPotezi.getStanje();
 			}
 			// preveri ali je to zadnja poteza
 			else {
 				if (stevec <= 1) stanje = Stanje.NEODLOCENO;
 				else stevec = stevec - 1;
 			}
-			
 			naPotezi = naPotezi.nasprotnik();
-			
 			return true;
 		}
 		return false;
@@ -59,7 +60,7 @@ public class Igra {
 	
 	// preveri ali je bila opravljena zmagovalna poteza
 
-	public boolean smoZmagali(Koordinati t, Igralec i) {
+	public boolean smoZmagali(Koordinati t) {
 		int x = t.getX();
 		int y = t.getY();
 		int glavni = 0;
@@ -70,13 +71,13 @@ public class Igra {
 			int stetje = 0;
 			for (int n = 1; n < 5; n++) {
 				if ((0 <= x + n * dx && x + n * dx < plosca.length) && (0 <= y + n*dy && y + n * dy < plosca.length)) {
-					if (plosca[x + n * dx][y + n * dy] == i.getPolje()) stetje++;
+					if (plosca[x + n * dx][y + n * dy] == this.naPotezi.getPolje()) stetje++;
 					else break;
 				}
 			}
 			for (int m = -1; m > -5; m--) {
 				if ((0 <= x + m * dx && x + m * dx < plosca.length) && (0 <= y + m * dy && y + m * dy < plosca.length)) {
-					if (plosca[x + m * dx][y + m * dy] == i.getPolje()) stetje++;
+					if (plosca[x + m * dx][y + m * dy] == this.naPotezi.getPolje()) stetje++;
 					else break;
 				}
 			}
@@ -92,10 +93,11 @@ public class Igra {
 	
 	// možne poteze (vsebuje prazna polja)
 	public List<Koordinati> poteze() {
+		
 		LinkedList<Koordinati> mp = new LinkedList<Koordinati>();
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
-				if (plosca[i][j] == Polje.PRAZNO) {
+				if (this.plosca[i][j] == Polje.PRAZNO) {
 					mp.add(new Koordinati(i, j));
 				}
 			}

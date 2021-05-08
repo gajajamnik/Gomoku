@@ -10,7 +10,7 @@ import logika.Igra;
 import logika.Igralec;
 import splosno.Koordinati;
 
-public class Vodja {
+public class VodjaTekst {
 	
 	private static enum VrstaIgralca { R, C; }
 	

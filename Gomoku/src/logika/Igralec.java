@@ -10,6 +10,11 @@ public enum Igralec {
 
 
 	public Polje getPolje() {
-		return (this == B ? Polje.W : Polje.B);
+		return (this == B ? Polje.B : Polje.W);
+		
+	}
+	
+	public Stanje getStanje() {
+		return (this == B ? Stanje.ZMAGA_B : Stanje.ZMAGA_W);
 	}
 }
