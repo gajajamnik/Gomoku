@@ -11,7 +11,7 @@ public class Igra {
 	public static int N = 15;
 	//stevilo zetonov, da zmagamo
 	public static int M = 5;
-	//zahtevnost alfabete
+	//zahtevnost alfabete (se ne dela?)
 	public static int ZAHTEVNOST = 5;
 	
 	//nekaj dodatnih spremenljivk
@@ -46,9 +46,8 @@ public class Igra {
 		}	
 	}
 	
-	
+	//generiramo novo igro
 	public Igra() {
-		
 		plosca = new Polje[N][N];
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
@@ -56,12 +55,13 @@ public class Igra {
 			}
 		}
 		
+		//ko stevec pade na 0 je neodloceno
 		stevec = N * N;
 		stanje = Stanje.V_TEKU;
 		naPotezi = Igralec.B;
 	}
 	
-	// ustvari kopijo igre
+	// ustvarimo kopijo že igrane igre
 	public Igra(Igra igra) {
 		this.plosca = new Polje[N][N];
 		for (int i = 0; i < N; i++) {
@@ -72,29 +72,28 @@ public class Igra {
 		this.naPotezi = igra.naPotezi;
 	}
 	
+	//vrne kdo je na potezi
 	public Igralec naPotezi() {
 		return naPotezi;
 	}
 	
+	//vrne kakšno je stanje
 	public Stanje stanje() {
 		return stanje;
 	}
 	
+	//vrne plosco
 	public Polje[][] getPlosca() {
 		return plosca;
 	}
 	
+	//poskušamo odigrati potezo, dano s koordinatama
 	public boolean odigraj(Koordinati k) {
-		
-
 		if (this.plosca[k.getX()][k.getY()] == Polje.PRAZNO) {
 			this.plosca[k.getX()][k.getY()] = naPotezi.getPolje();
-			
-			
 			if (this.smoZmagali(k)) {
 				stanje = naPotezi.getStanje();
 			}
-			
 			else {
 				if (stevec <= 1) stanje = Stanje.NEODLOCENO;
 				else stevec = stevec - 1;
@@ -105,12 +104,12 @@ public class Igra {
 		return false;
 	}
 	
-	
-
+	//preverimo, ali imamo 5 žetonov na kupu
 	public boolean smoZmagali(Koordinati t) {
 		int x = t.getX();
 		int y = t.getY();
 		int glavni = 0;
+		
 		int[][] smer = {{1,0}, {1,1}, {0,1}, {-1,1}};
 		for (int[] s : smer) {
 			int dx = s[0];
@@ -134,63 +133,7 @@ public class Igra {
 		else return false;
 	}
 	
-//	private Igralec cigavaVrsta(Vrsta t) {
-//		int count_B = 0;
-//		int count_W = 0;
-//		for (int k = 0; k < M && (count_B == 0 || count_W == 0); k++) {
-//			switch (plosca[t.x[k]][t.y[k]]) {
-//			case B: count_B += 1; break;
-//			case W: count_W += 1; break;
-//			case PRAZNO: break;
-//			}
-//		}
-//		if (count_B == M) { return Igralec.B; }
-//		else if (count_W == M) { return Igralec.W; }
-//		else { return null; }
-//	}
-//	
-//	public Vrsta zmagovalnaVrsta() {
-//		for (Vrsta t : VRSTE) {
-//			Igralec lastnik = cigavaVrsta(t);
-//			if (lastnik != null) return t;
-//		}
-//		return null;
-//	}
-//	
-//	public Stanje stanje() {
-//		// Ali imamo zmagovalca?
-//		Vrsta t = zmagovalnaVrsta();
-//		if (t != null) {
-//			switch (plosca[t.x[0]][t.y[0]]) {
-//			case B: return Stanje.ZMAGA_B; 
-//			case W: return Stanje.ZMAGA_W;
-//			case PRAZNO: assert false;
-//			}
-//		}
-//		// Ali imamo kakĹˇno prazno polje?
-//		// ÄŚe ga imamo, igre ni konec in je nekdo na potezi
-//		for (int i = 0; i < N; i++) {
-//			for (int j = 0; j < N; j++) {
-//				if (plosca[i][j] == Polje.PRAZNO) return Stanje.V_TEKU;
-//			}
-//		}
-//		// Polje je polno, rezultat je neodloÄŤen
-//		return Stanje.NEODLOCENO;
-//	}
-//	
-//	public boolean odigraj(Koordinati p) {
-//		if (plosca[p.getX()][p.getY()] == Polje.PRAZNO) {
-//			plosca[p.getX()][p.getY()] = naPotezi.getPolje();
-//			naPotezi = naPotezi.nasprotnik();
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
-//	}
-
-	
-	
+	//seznam moznih potez, ki jih lahko še odigramo
 	public List<Koordinati> poteze() {
 		
 		LinkedList<Koordinati> mp = new LinkedList<Koordinati>();

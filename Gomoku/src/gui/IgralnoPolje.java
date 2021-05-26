@@ -26,12 +26,13 @@ public class IgralnoPolje extends JPanel implements MouseListener {
 		return Math.min(getHeight(), getWidth()) / Igra.N;
 	}
 	
-	
+	//narise crn krogec
 	private void narisiCrnega(Graphics2D g2, int i, int j) {
 		double sirina = velikostKvadratka();
 		double x_koordinata = i * sirina + (sirina * SIRINA);
 		double y_koordinata = j * sirina + (sirina * SIRINA);
 		double polmer = sirina - (2 * sirina * SIRINA);
+		
 		g2.setColor(Color.BLACK);
 		g2.fillOval((int) x_koordinata,(int) y_koordinata,(int) polmer,(int) polmer);
 		g2.setColor(Color.DARK_GRAY);
@@ -39,12 +40,13 @@ public class IgralnoPolje extends JPanel implements MouseListener {
 		g2.drawOval((int) x_koordinata,(int) y_koordinata,(int) polmer,(int) polmer);
 	}
 	
-	
+	//narise bel krogec
 	private void narisiBelega(Graphics2D g2, int i, int j) {
 		double sirina = velikostKvadratka();
 		double x_koordinata = i * sirina + (sirina * SIRINA);
 		double y_koordinata = j * sirina + (sirina * SIRINA);
 		double polmer = sirina - (2 * sirina * SIRINA);
+		
 		g2.setColor(Color.WHITE);
 		g2.fillOval((int) x_koordinata,(int) y_koordinata,(int) polmer,(int) polmer);
 		g2.setColor(Color.LIGHT_GRAY);
@@ -52,7 +54,7 @@ public class IgralnoPolje extends JPanel implements MouseListener {
 		g2.drawOval((int) x_koordinata,(int) y_koordinata,(int) polmer,(int) polmer);
 	}
 	
-	
+	//narise navpicne in vodoravne crte
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
@@ -82,6 +84,7 @@ public class IgralnoPolje extends JPanel implements MouseListener {
 		}
 	}
 	
+	//krogec se narise z pritiskom na gumb
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (Vodja.clovekNaVrsti) {

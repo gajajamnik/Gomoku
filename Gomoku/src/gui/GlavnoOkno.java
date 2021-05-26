@@ -20,8 +20,10 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 	
 	protected IgralnoPolje polje;
 	
+	//statusna vrstica
 	private JLabel status;
 
+	//nekaj gumbov, s katerimi si izberemo nastavitve
 	private JMenuItem igraClovekRacunalnik;
 	private JMenuItem igraRacunalnikClovek;
 	private JMenuItem igraClovekClovek;
@@ -60,19 +62,23 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		
 		JMenuBar igralni_meni = new JMenuBar();
 		
+		//dodamo menuje
 		JMenu igraj = dodajMenu(igralni_meni, "Nova Igra");
 		JMenu nastavitve = dodajMenu(igralni_meni, "Nastavitve");
 		setJMenuBar(igralni_meni);
 		
+		//menu igraj
 		igraClovekRacunalnik = dodajMenuItem(igraj, "Èlovek - Èrni, Raèunalnik - Beli");
 		igraRacunalnikClovek = dodajMenuItem(igraj, "Raèunalnik - Èrni, Èlovek - Beli");
 		igraClovekClovek = dodajMenuItem(igraj, "Èlovek - Èrni, Èlovek - Beli");
 		igraRacunalnikRacunalnik = dodajMenuItem(igraj, "Raèunalnik - Èrni, Raèunalnik - Beli");
 		
+		//menu nastavitve
 		velikostPolja = dodajMenuItem(nastavitve, "Velikost Polja");
 		zahtevnostRacunalnika = dodajMenuItem(nastavitve, "Zahtevnost Raèunalnika");
 	}
 	
+	//funkcije iz vaj
 	public JMenu dodajMenu(JMenuBar menubar, String naslov) {
 		JMenu menu = new JMenu(naslov);
 		menubar.add(menu);
@@ -89,7 +95,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		
+		//nastavimo igralca clovek-racunalnik
 		if (source == igraClovekRacunalnik) {
 			Vodja.vrstaIgralca = new EnumMap<Igralec,VrstaIgralca>(Igralec.class);
 			Vodja.vrstaIgralca.put(Igralec.B, VrstaIgralca.C); 
@@ -99,7 +105,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.kdoIgra.put(Igralec.W, Vodja.racunalnikovaInteligenca);
 			Vodja.igramoNovoIgro();
 		}
-		
+		//nastavimo igralca racunalnik-clovek
 		else if (source == igraRacunalnikClovek) {
 			Vodja.vrstaIgralca = new EnumMap<Igralec,VrstaIgralca>(Igralec.class);
 			Vodja.vrstaIgralca.put(Igralec.B, VrstaIgralca.R); 
@@ -109,7 +115,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.kdoIgra.put(Igralec.B, Vodja.racunalnikovaInteligenca);
 			Vodja.igramoNovoIgro();
 		}
-		
+		//nastavimo igralca clovek-clovek
 		else if (source == igraClovekClovek) {
 			Vodja.vrstaIgralca = new EnumMap<Igralec,VrstaIgralca>(Igralec.class);
 			Vodja.vrstaIgralca.put(Igralec.B, VrstaIgralca.C); 
@@ -119,7 +125,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.kdoIgra.put(Igralec.W, new KdoIgra("Èlovek"));
 			Vodja.igramoNovoIgro();
 		}
-		
+		//nastavimo igralca racunalnik-racunalnik
 		else if (source == igraRacunalnikRacunalnik) {
 			Vodja.vrstaIgralca = new EnumMap<Igralec,VrstaIgralca>(Igralec.class);
 			Vodja.vrstaIgralca.put(Igralec.B, VrstaIgralca.R); 
@@ -129,7 +135,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.kdoIgra.put(Igralec.W, Vodja.racunalnikovaInteligenca);
 			Vodja.igramoNovoIgro();
 		}
-		
+		//moznost spreminjanja polja
 		else if (source == velikostPolja) {
 			String velikostPolja = JOptionPane.showInputDialog(this, "Vnesite velikost polja!");
 			if (velikostPolja != null && velikostPolja.matches("\\d+")) {
@@ -139,7 +145,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 				else Igra.N = velikost;
 			}
 		}
-		
+		//moznost spreminjanja globine (se ne deluje)?
 		else if (source == zahtevnostRacunalnika) {
 			String zahtevnostPolja = JOptionPane.showInputDialog(this, "Vnesite zahtevnost raèunalnika! (globina)");
 			if (zahtevnostPolja != null && zahtevnostPolja.matches("\\d+")) {
@@ -151,6 +157,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		}
 	}
 
+	//osvezi GUI
 	public void osveziGUI() {
 		if (Vodja.igra == null) {
 			status.setText("Igra ni v teku.");
