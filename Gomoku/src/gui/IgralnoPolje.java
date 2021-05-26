@@ -88,12 +88,12 @@ public class IgralnoPolje extends JPanel implements MouseListener {
 			int x = e.getX();
 			int y = e.getY();
 			double velikost = velikostKvadratka();
-			int kvadrat_x = x /(int) velikost;
-			int kvadrat_y = y /(int) velikost;
+			int kvadrat_x = Math.floorDiv(x, (int) velikost);
+			int kvadrat_y = Math.floorDiv(y, (int) velikost);
 			double dovoljen_x = (x % (int) velikost) / velikost;
 			double dovoljen_y = (y % (int) velikost) / velikost;
-			if (0 < kvadrat_x && kvadrat_x < Igra.N && (0.5 * ROB) < dovoljen_x && dovoljen_x < (1 - (0.5 * ROB))
-					&& 0 < kvadrat_y && kvadrat_y < Igra.N && (0.5 * ROB) < dovoljen_y && dovoljen_y < (1 - (0.5 * ROB))) {
+			if (0 <= kvadrat_x && kvadrat_x < Igra.N && (0.5 * ROB) < dovoljen_x && dovoljen_x < (1 - (0.5 * ROB))
+					&& 0 <= kvadrat_y && kvadrat_y < Igra.N && (0.5 * ROB) < dovoljen_y && dovoljen_y < (1 - (0.5 * ROB))) {
 				Vodja.igrajClovekovoPotezo(new Koordinati(kvadrat_x, kvadrat_y));
 			}
 		}

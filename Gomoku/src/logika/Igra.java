@@ -15,6 +15,34 @@ public class Igra {
 	public Stanje stanje;
 	public int stevec;
 	
+	public static final List<Vrsta> VRSTE = new LinkedList<Vrsta>();
+	
+	static {
+		
+		int[][] smer = {{1,0}, {0,1}, {1,1}, {1,-1}};
+		
+		for (int x = 0; x < N; x++) {
+			for (int y = 0; y < N; y ++) {
+				for (int[] s : smer) {
+					int dx = s[0];
+					int dy = s[0];
+					
+					if ((0 <= x + (N-1) * dx) && (x + (N-1) * dx < N) && 
+						(0 <= y + (N-1) * dy) && (y + (N-1) * dy < N)) {
+						int[] vrsta_x = new int[N];
+						int[] vrsta_y = new int[N];
+						for (int k = 0; k < N; k++) {
+							vrsta_x[k] = x + dx * k;
+							vrsta_y[k] = y + dy * k;
+						}
+						VRSTE.add(new Vrsta(vrsta_x, vrsta_y));
+					}
+				}
+			}
+		}	
+	}
+	
+	
 	public Igra() {
 		
 		this.plosca = new Polje[N][N];
@@ -27,6 +55,21 @@ public class Igra {
 		this.stevec = N * N;
 		this.stanje = Stanje.V_TEKU;
 		this.naPotezi = Igralec.B;
+	}
+	
+	// ustvari kopijo igre
+	public Igra(Igra igra) {
+		this.plosca = new Polje[N][N];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				this.plosca[i][j] = igra.plosca[i][j];
+			}
+		}
+		this.naPotezi = igra.naPotezi;
+	}
+	
+	public Igralec naPotezi() {
+		return this.naPotezi;
 	}
 	
 	public Stanje stanje() {
@@ -87,8 +130,6 @@ public class Igra {
 		else return false;
 	}
 
-	
-	
 	
 	
 	// možne poteze (vsebuje prazna polja)

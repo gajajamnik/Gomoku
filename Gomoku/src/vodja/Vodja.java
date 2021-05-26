@@ -8,6 +8,9 @@ import javax.swing.SwingWorker;
 import java.util.concurrent.TimeUnit;
 
 import gui.GlavnoOkno;
+import inteligenca.AlfaBeta;
+import inteligenca.Inteligenca;
+import inteligenca.RandomMinimax;
 import logika.Igra;
 import logika.Igralec;
 import splosno.Koordinati;
@@ -50,15 +53,16 @@ public class Vodja {
 		}
 	}
 	
+	public static Inteligenca racunalnikovaInteligenca = new RandomMinimax(9);
+	
 	public static void igrajRacunalnikovoPotezo() {
 		Igra zacetkaIgra = igra;
 		SwingWorker<Koordinati, Void> worker = new SwingWorker<Koordinati, Void> () {
 			@Override
 			protected Koordinati doInBackground() {
-				try {TimeUnit.SECONDS.sleep(2);} catch (Exception e) {};
-				List<Koordinati> moznePoteze = igra.poteze();
-				int randomIndex = random.nextInt(moznePoteze.size());
-				return moznePoteze.get(randomIndex);
+				Koordinati poteza = racunalnikovaInteligenca.izberiPotezo(igra);
+				try {TimeUnit.SECONDS.sleep(1);} catch (Exception e) {};
+				return poteza;
 			}
 			@Override
 			protected void done () {

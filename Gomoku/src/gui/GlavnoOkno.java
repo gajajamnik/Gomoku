@@ -95,7 +95,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			if (velikostPolja != null && velikostPolja.matches("\\d+")) {
 				int velikost = Integer.parseInt(velikostPolja);
 				if (velikost >= 20) Igra.N = 19;
-				else if (velikost <= 9) Igra.N = 10;
+				else if (velikost <= 9) Igra.N = 5;
 				else Igra.N = velikost;
 			}
 		}
