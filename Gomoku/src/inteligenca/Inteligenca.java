@@ -10,7 +10,7 @@ public abstract class Inteligenca extends KdoIgra {
 		super(ime);
 	}
 	
-	public abstract Koordinati izberiPotezo (Igra igra);
+	public abstract Koordinati izberiPotezo(Igra igra);
 	
 	
 

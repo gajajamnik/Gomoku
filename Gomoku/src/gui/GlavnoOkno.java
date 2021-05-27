@@ -29,7 +29,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 	private JMenuItem igraClovekClovek;
 	private JMenuItem igraRacunalnikRacunalnik;
 	private JMenuItem velikostPolja;
-	private JMenuItem zahtevnostRacunalnika;
+	//private JMenuItem zahtevnostRacunalnika;
 	
 	public GlavnoOkno() {
 		
@@ -75,7 +75,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		
 		//menu nastavitve
 		velikostPolja = dodajMenuItem(nastavitve, "Velikost Polja");
-		zahtevnostRacunalnika = dodajMenuItem(nastavitve, "Zahtevnost Raèunalnika");
+		//zahtevnostRacunalnika = dodajMenuItem(nastavitve, "Zahtevnost Raèunalnika");
 	}
 	
 	//funkcije iz vaj
@@ -102,7 +102,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.vrstaIgralca.put(Igralec.W, VrstaIgralca.R);
 			Vodja.kdoIgra = new EnumMap<Igralec,KdoIgra>(Igralec.class);
 			Vodja.kdoIgra.put(Igralec.B, new KdoIgra("Èlovek")); 
-			Vodja.kdoIgra.put(Igralec.W, Vodja.racunalnikovaInteligenca);
+			Vodja.kdoIgra.put(Igralec.W, new KdoIgra("Nakljuèni AI"));
 			Vodja.igramoNovoIgro();
 		}
 		//nastavimo igralca racunalnik-clovek
@@ -112,7 +112,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.vrstaIgralca.put(Igralec.W, VrstaIgralca.C);
 			Vodja.kdoIgra = new EnumMap<Igralec,KdoIgra>(Igralec.class);
 			Vodja.kdoIgra.put(Igralec.W, new KdoIgra("Èlovek")); 
-			Vodja.kdoIgra.put(Igralec.B, Vodja.racunalnikovaInteligenca);
+			Vodja.kdoIgra.put(Igralec.B, new KdoIgra("Nakljuèni AI"));
 			Vodja.igramoNovoIgro();
 		}
 		//nastavimo igralca clovek-clovek
@@ -131,8 +131,8 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			Vodja.vrstaIgralca.put(Igralec.B, VrstaIgralca.R); 
 			Vodja.vrstaIgralca.put(Igralec.W, VrstaIgralca.R);
 			Vodja.kdoIgra = new EnumMap<Igralec,KdoIgra>(Igralec.class);
-			Vodja.kdoIgra.put(Igralec.B, Vodja.racunalnikovaInteligenca); 
-			Vodja.kdoIgra.put(Igralec.W, Vodja.racunalnikovaInteligenca);
+			Vodja.kdoIgra.put(Igralec.B, new KdoIgra("Nakljuèni AI")); 
+			Vodja.kdoIgra.put(Igralec.W, new KdoIgra("Nakljuèni AI"));
 			Vodja.igramoNovoIgro();
 		}
 		//moznost spreminjanja polja
@@ -141,20 +141,21 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 			if (velikostPolja != null && velikostPolja.matches("\\d+")) {
 				int velikost = Integer.parseInt(velikostPolja);
 				if (velikost > 25) Igra.N = 25;
-				else if (velikost < 5) Igra.N = 5;
+				else if (velikost < 4) Igra.N = 5;
 				else Igra.N = velikost;
 			}
 		}
 		//moznost spreminjanja globine (se ne deluje)?
-		else if (source == zahtevnostRacunalnika) {
-			String zahtevnostPolja = JOptionPane.showInputDialog(this, "Vnesite zahtevnost raèunalnika! (globina)");
-			if (zahtevnostPolja != null && zahtevnostPolja.matches("\\d+")) {
-				int zahtevnost = Integer.parseInt(zahtevnostPolja);
-				if (zahtevnost > 9) Igra.ZAHTEVNOST = 9;
-				else if (zahtevnost < 0) Igra.ZAHTEVNOST = 0;
-				else Igra.ZAHTEVNOST = zahtevnost;
-			}
-		}
+//		else if (source == zahtevnostRacunalnika) {
+//			String zahtevnostPolja = JOptionPane.showInputDialog(this, "Vnesite zahtevnost raèunalnika! (globina)");
+//			if (zahtevnostPolja != null && zahtevnostPolja.matches("\\d+")) {
+//				int zahtevnost = Integer.parseInt(zahtevnostPolja);
+//				if (zahtevnost > 9) Igra.ZAHTEVNOST = 9 ;
+//				else if (zahtevnost < 0) Igra.ZAHTEVNOST = 0;
+//				else Igra.ZAHTEVNOST = zahtevnost;
+//				System.out.println(Igra.ZAHTEVNOST);
+//			}
+//		}
 	}
 
 	//osvezi GUI
