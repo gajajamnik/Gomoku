@@ -9,7 +9,7 @@ public class Igra {
 	
 	public static int N = 15;					//Velikost polja
 	public static int M = 5;					//Stevilo zetonov, potrebnih za zmago
-	//public static int ZAHTEVNOST = 5;			//Zahtevnost Alfabete
+	//public static int ZAHTEVNOST = 5;			//Zahtevnost Alfabete  
 	
 	private Polje[][] plosca;
 	public Igralec naPotezi;
