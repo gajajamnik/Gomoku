@@ -5,10 +5,10 @@ Gomoku je abstraktna strateška družabna igra, znana tudi kot "pet v vrsti".
 ## Pravila igre
 - Igralca izmenično postavljata žetone črne in bele barva na polje velikosti N×N. 
 - Igro začne igralec z črnimi žetoni
-- Igra je končana ko kateri od igralcev zbere najmanj 5 žetonov svoje barve v vodoravni, navpični ali diagonalni vrsti.
+- Igra je končana, ko kateri od igralcev zbere najmanj 5 žetonov svoje barve v vodoravni, navpični ali diagonalni vrsti.
 
 ## Nastavitve igre
-- Igro lahko igrata igralca človek proti človeku ali človek proti računalniku. 
+- Igro lahko igra lahko človek ali računalnik. 
 - Velikost plošče je nastavljiva na poljubno velikost.
 
 ## Pričetek igre
