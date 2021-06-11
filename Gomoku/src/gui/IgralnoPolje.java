@@ -9,7 +9,9 @@ import javax.swing.*;
 import logika.Igra;
 import logika.Polje;
 import vodja.Vodja;
-
+/**
+ * Obmoèje v oknu v katerem je igralno polje
+ */
 @SuppressWarnings("serial")
 public class IgralnoPolje extends JPanel implements MouseListener {
 
@@ -19,9 +21,11 @@ public class IgralnoPolje extends JPanel implements MouseListener {
 		this.addMouseListener(this);
 	}
 	
+	//Sirina polja
 	private final static double SIRINA = 0.1;
+	//Rob polja
 	private final static double ROB = 0.05;
-	
+	//Velikost kvadratka
 	private double velikostKvadratka() {
 		return Math.min(getHeight(), getWidth()) / Igra.N;
 	}

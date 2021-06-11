@@ -1,5 +1,8 @@
 package splosno;
 
+/**
+ * Koordinate polja v plosci
+ */
 public class Koordinati {
 	private int x;
 	private int y;

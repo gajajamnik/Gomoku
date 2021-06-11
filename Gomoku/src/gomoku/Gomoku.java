@@ -1,6 +1,9 @@
 package gomoku;
 
 import gui.GlavnoOkno;
+import inteligenca.OceniPozicijo;
+import logika.Igra;
+import logika.Igralec;
 import vodja.Vodja;
 
 public class Gomoku {
@@ -10,6 +13,7 @@ public class Gomoku {
 		glavno_okno.pack();
 		glavno_okno.setVisible(true);
 		Vodja.okno = glavno_okno;
+				
 	}
 	
 }

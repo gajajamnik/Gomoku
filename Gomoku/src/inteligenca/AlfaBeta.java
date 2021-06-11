@@ -6,8 +6,9 @@ import logika.Igra;
 import logika.Igralec;
 import splosno.Koordinati;
 
-//ne deluje pravilno
-
+/**
+ * AlfaBeta algoritem
+ */
 public class AlfaBeta extends Inteligenca {
 	
 	private static final int ALFA_W = 100; //beli bo imel vedno alfa

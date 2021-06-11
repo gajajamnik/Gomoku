@@ -15,6 +15,10 @@ import splosno.KdoIgra;
 import vodja.Vodja;
 import vodja.VrstaIgralca;
 
+/**
+ * Glavno okno aplikacije
+ */
+
 @SuppressWarnings("serial")
 public class GlavnoOkno extends JFrame implements ActionListener {
 	
@@ -29,7 +33,6 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 	private JMenuItem igraClovekClovek;
 	private JMenuItem igraRacunalnikRacunalnik;
 	private JMenuItem velikostPolja;
-	//private JMenuItem zahtevnostRacunalnika;
 	
 	public GlavnoOkno() {
 		
@@ -39,6 +42,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		
 		polje = new IgralnoPolje();
 		
+		//osnovne nastavitve
 		GridBagConstraints polje_layout = new GridBagConstraints();
 		polje_layout.gridx = 0;
 		polje_layout.gridy = 0;
@@ -47,6 +51,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		polje_layout.weighty = 1.0;
 		getContentPane().add(polje, polje_layout);
 		
+		//status
 		status = new JLabel();
 		
 		status.setFont(new Font(status.getFont().getName(),
@@ -60,6 +65,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		
 		status.setText("Izberite igro!");
 		
+		//menu
 		JMenuBar igralni_meni = new JMenuBar();
 		
 		//dodamo menuje
@@ -75,10 +81,10 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 		
 		//menu nastavitve
 		velikostPolja = dodajMenuItem(nastavitve, "Velikost Polja");
-		//zahtevnostRacunalnika = dodajMenuItem(nastavitve, "Zahtevnost Raèunalnika");
 	}
 	
 	//funkcije iz vaj
+	
 	public JMenu dodajMenu(JMenuBar menubar, String naslov) {
 		JMenu menu = new JMenu(naslov);
 		menubar.add(menu);
@@ -95,6 +101,7 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
+		
 		//nastavimo igralca clovek-racunalnik
 		if (source == igraClovekRacunalnik) {
 			Vodja.vrstaIgralca = new EnumMap<Igralec,VrstaIgralca>(Igralec.class);
@@ -145,17 +152,6 @@ public class GlavnoOkno extends JFrame implements ActionListener {
 				else Igra.N = velikost;
 			}
 		}
-		//moznost spreminjanja globine (se ne deluje)?
-//		else if (source == zahtevnostRacunalnika) {
-//			String zahtevnostPolja = JOptionPane.showInputDialog(this, "Vnesite zahtevnost raèunalnika! (globina)");
-//			if (zahtevnostPolja != null && zahtevnostPolja.matches("\\d+")) {
-//				int zahtevnost = Integer.parseInt(zahtevnostPolja);
-//				if (zahtevnost > 9) Igra.ZAHTEVNOST = 9 ;
-//				else if (zahtevnost < 0) Igra.ZAHTEVNOST = 0;
-//				else Igra.ZAHTEVNOST = zahtevnost;
-//				System.out.println(Igra.ZAHTEVNOST);
-//			}
-//		}
 	}
 
 	//osvezi GUI

@@ -1,5 +1,8 @@
 package vodja;
 
+/**
+ * Mozne vrste igralcev
+ */
 public enum VrstaIgralca {
 	R, C; 
 	

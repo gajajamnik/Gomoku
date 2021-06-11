@@ -7,18 +7,27 @@ import splosno.Koordinati;
 
 public class Igra {
 	
-	public static int N = 15;					//Velikost polja
-	public static int M = 5;					//Stevilo zetonov, potrebnih za zmago
-	//public static int ZAHTEVNOST = 5;			//Zahtevnost Alfabete  
-	
+	//Velikost polja
+	public static int N = 15;
+	//Število žetonov potrebnih za zmago
+	public static int M = 5;
+	 
+	// Igralna plosca
 	private Polje[][] plosca;
+	
+	// igralec, ki je na potezi
 	public Igralec naPotezi;
+	
+	// Stanje igre
 	public Stanje stanje;
+	
+	// Stevilo praznih polj
 	public int stevec;
 	
-	
+	// Pomozen seznam za vrste v plosci
 	public List<Vrsta> VRSTE = new LinkedList<Vrsta>();
 	
+	// Nova igra
 	public Igra() {
 		plosca = new Polje[N][N];
 		for (int i = 0; i < N; i++) {
@@ -32,6 +41,7 @@ public class Igra {
 		naPotezi = Igralec.B;
 	}
 	
+	// Kopija igre
 	public Igra(Igra igra) {
 		this.plosca = new Polje[N][N];
 		for (int i = 0; i < N; i++) {
@@ -42,19 +52,31 @@ public class Igra {
 		this.naPotezi = igra.naPotezi;
 	}
 	
+	/**
+	 * @return igralec na potezi
+	 */
 	public Igralec naPotezi() {
 		return naPotezi;
 	}
 	
+	/**
+	 * @return stanje igre
+	 */
 	public Stanje stanje() {
 		return stanje;
 	}
 	
+	/**
+	 * @return igralna plosca
+	 */
 	public Polje[][] getPlosca() {
 		return plosca;
 	}
 	
-	
+	/**
+	 * @param k
+	 * @return ali je bila poteza pravilno odigrana
+	 */
 	public boolean odigraj(Koordinati k) {
 		int x = k.getX();
 		int y = k.getY();
@@ -74,6 +96,10 @@ public class Igra {
 		return false;
 	}
 	
+	/**
+	 * @param t
+	 * @return true, ce smo zmagali
+	 */
 	public boolean smoZmagali(Koordinati t) {
 		int x = t.getX();
 		int y = t.getY();
@@ -103,6 +129,9 @@ public class Igra {
 		else return false;
 	}
 	
+	/**
+	 * @return poteze, ki jih moramo odigrat
+	 */
 	public List<Koordinati> najdiPoteze() {
 		LinkedList<Koordinati> dobrePoteze = new LinkedList<Koordinati>();
 		LinkedList<Koordinati> nujnePoteze = new LinkedList<Koordinati>();

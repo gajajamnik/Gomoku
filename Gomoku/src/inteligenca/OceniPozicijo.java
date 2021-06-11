@@ -6,10 +6,12 @@ import logika.Polje;
 
 public class OceniPozicijo {
 	
-	//mogoce deluje pravilno?
-	
 	static int zmagovalneTocke = 1000000;
 	
+	/**
+	 * @param igra, jaz
+	 * @return razlika ocen igralèevih potez
+	 */
 	public static int oceniPozicijo(Igra igra, Igralec jaz) {
 		Igralec nasprotnik = jaz.nasprotnik();
 		int mojaOcena = dobiOceno(igra, jaz);
@@ -17,11 +19,19 @@ public class OceniPozicijo {
 		return mojaOcena - nasprotnikovaOcena;
 	}
 	
+	/**
+	 * @param igra, jaz
+	 * @return vsota ocen vodoravna, navpicno in digonalno
+	 */
 	public static int dobiOceno(Igra igra, Igralec jaz) {
 		Polje[][] plosca = igra.getPlosca();
 		return oceniVodoravno(plosca, igra, jaz) + oceniNavpicno(plosca, igra, jaz) + oceniDiagonalno(plosca, igra, jaz);
 	}
 	
+	/**
+	 * @param plosca, igra, jaz
+	 * @return vodoravna ocena
+	 */
 	public static int oceniVodoravno(Polje[][] plosca, Igra igra, Igralec jaz) {						//na plosco gledamo le v vodoravni smeri
 		int zaporedni = 0;																				//stevilo zaporednih zetonov
 		int blokiranje = 2;																				//stevilo blokiranih strani nasih zetonov (najvec blokirani iz 2 strani)
@@ -58,6 +68,10 @@ public class OceniPozicijo {
 		return ocena;																					//vrnemo oceno
 	}
 	
+	/**
+	 * @param plosca, igra, jaz
+	 * @return navpicna ocena
+	 */
 	public static int oceniNavpicno(Polje[][] plosca, Igra igra, Igralec jaz) {							//na plosco gledamo le v navpicni smeri
 		int zaporedni = 0;																				//stevilo zaporednih zetonov
 		int blokiranje = 2;																				//stevilo blokiranih strani nasih zetonov (najvec blokirani iz 2 strani)
@@ -94,6 +108,10 @@ public class OceniPozicijo {
 		return ocena;																					//vrnemo oceno
 	}
 	
+	/**
+	 * @param plosca, igra, jaz
+	 * @return diagonalna ocena
+	 */
 	public static int oceniDiagonalno(Polje[][] plosca, Igra igra, Igralec jaz) {						//na plosco gledamo le v diagonalnih smeri
 		int zaporedni = 0;																				//stevilo zaporednih zetonov
 		int blokiranje = 2;																				//stevilo blokiranih strani nasih zetonov (najvec blokirani iz 2 strani)

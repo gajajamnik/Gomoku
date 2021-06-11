@@ -1,5 +1,8 @@
 package splosno;
 
+/**
+ * Kdo igra trenutno igro
+ */
 public class KdoIgra {
 
 	protected String ime;

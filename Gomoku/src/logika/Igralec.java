@@ -1,5 +1,9 @@
 package logika;
 
+/**
+ * Igralci igre
+ */
+
 public enum Igralec {
 	B, W;
 	
